@@ -1,0 +1,20 @@
+// 顶点着色器
+#version 330 core
+layout(location = 0) in vec3 aCenter; // 形状中心坐标
+layout(location = 1) in vec3 color; // 形状颜色
+layout(location = 2) in float redius; // 形状颜色
+uniform vec2 uResolution;
+out vec3 vs_Center;
+out vec3 ourColor;
+out float f_redius;
+out vec2 f_uResolution;
+void main() {
+    // 将顶点位置设置为覆盖整个屏幕（或自定义区域）
+    
+    gl_Position = vec4(aCenter.xy/(uResolution*0.5),aCenter.z, 1.0); 
+    vs_Center = aCenter;
+    ourColor = color;
+    f_redius=redius;
+    f_uResolution = uResolution;
+    gl_PointSize=60.0f;
+}

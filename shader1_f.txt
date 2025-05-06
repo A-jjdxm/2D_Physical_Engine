@@ -1,0 +1,17 @@
+// 片元着色器
+#version 330 core
+in vec3 vs_Center;
+in vec3 ourColor;		// 输入(3维)颜色向量
+in float f_redius;
+in vec2 f_uResolution;
+out vec4 FragColor;
+void main() {
+    vec2 fragCoord = gl_FragCoord.xy-f_uResolution*0.5f;
+    vec2 center = vec2(vs_Center.x,vs_Center.y);
+    float dist = distance(fragCoord, center);
+    if(dist<f_redius){
+        FragColor = vec4(ourColor, 1.0);
+    }else{
+        discard;
+    }
+}
